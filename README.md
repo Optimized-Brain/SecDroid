@@ -1,4 +1,4 @@
-Below is a sample detailed README for the SecDroid GitHub repository:
+
 
 ---
 
