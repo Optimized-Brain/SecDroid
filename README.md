@@ -2,7 +2,8 @@
 
 # SecDroid - OWASP MASVS Static Analyzer for Android Apps
 
-![SecDroid Logo](./assets/logo.png)
+
+![SecDroid Logo](./SecDroid_Logo.jpg)
 
 SecDroid is a comprehensive static analysis tool designed to assess the security of Android APKs. Built upon the [OWASP Mobile Application Security Verification Standard (MASVS)](https://mas.owasp.org/MASVS/), SecDroid automatically decompiles and inspects Android applications to detect vulnerabilities, insecure configurations, and misconfigurations that could lead to data leakage or unauthorized access.
 
