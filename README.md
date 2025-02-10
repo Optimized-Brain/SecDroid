@@ -1,7 +1,5 @@
 
 
----
-
 # SecDroid - OWASP MASVS Static Analyzer for Android Apps
 
 ![SecDroid Logo](./assets/logo.png)
