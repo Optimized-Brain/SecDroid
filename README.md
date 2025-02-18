@@ -179,7 +179,7 @@ python3 SecDroid.py [options] <APK_FILE_OR_DIRECTORY>
    SecDroid recursively scans the decompiled sources and resource files to hunt for potential security vulnerabilities based on OWASP MASVS criteria. This includes checks for insecure data storage, weak cryptography, improper logging, and more.
 
 6. **Reporting:**  
-   Findings are output to the console with color-coded messages for quick identification. When the logging option is enabled, detailed logs and an HTML report are generated.
+   Findings are output to the console with color-coded messages for quick identification. When the logging option is enabled, detailed log report is generated and saved as a text file.
 
 ---
 
