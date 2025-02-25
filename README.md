@@ -82,7 +82,7 @@ Additionally, you must install jadx and dex2jar (see [Installation](#installatio
 1. **Clone the Repository:**
 
    ```sh
-   git clone https://github.com/yourusername/SecDroid.git
+   git clone https://github.com/Optimized-Brain/SecDroid.git
    cd SecDroid
    ```
 
