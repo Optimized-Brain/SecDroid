@@ -126,6 +126,35 @@ def SecDroid_help():
     print(color_brown + "\n    Note:" + color_reset)
     print("\t - Ensure required tools (jadx, dex2jar, grep, etc.) are installed!")
 
+# --- Custom Rule Engine Integration ---
+def custom_rule_mode(rules_file, target_path):
+    """
+    Invokes the custom rule engine module.
+    Usage: python3 SecDroid.py -cr <rules_file.json> <target_path>
+    """
+    try:
+        from custom_rule_engine import CustomRuleEngine
+    except ImportError as e:
+        logging.error("Custom rule engine module not found. Ensure custom_rule_engine.py is in the repository.")
+        sys.exit(1)
+
+    engine = CustomRuleEngine(rules_file)
+    # Determine if target_path is a directory or a single file
+    if os.path.isdir(target_path):
+        findings = engine.scan_directory(target_path)
+    elif os.path.isfile(target_path):
+        findings = engine.scan_file(target_path)
+    else:
+        logging.error("Provided target path is neither a file nor a directory.")
+        sys.exit(1)
+
+    if findings:
+        for finding in findings:
+            logging.info(f"[{finding['severity']}] {finding['file']}:{finding['line']} - {finding['rule_description']}")
+            logging.info(f"    Matched text: {finding['match']}\n")
+    else:
+        logging.info("No custom rule violations found.")
+
 def SecDroid_core(apkpath, logger=None):
 
     import shutil
@@ -2311,6 +2340,31 @@ def main():
         SecDroid_Intro()
         SecDroid_help()
         sys.exit(0)
+
+    
+    if len(sys.argv) >= 2 and sys.argv[1] == "-cr":
+        if len(sys.argv) < 4:
+            logger.error("Usage: python3 SecDroid.py -cr <rules_file.json> <target_path>")
+            sys.exit(1)
+        rules_file = sys.argv[2]
+        target_path = sys.argv[3]
+        from custom_rule_engine import CustomRuleEngine
+        engine = CustomRuleEngine(rules_file)
+        if os.path.isdir(target_path):
+            findings = engine.scan_directory(target_path)
+        elif os.path.isfile(target_path):
+            findings = engine.scan_file(target_path)
+        else:
+            logger.error("Provided target path is neither a file nor a directory.")
+            sys.exit(1)
+
+        if findings:
+            for finding in findings:
+                logger.info(f"[{finding['severity']}] {finding['file']}:{finding['line']} - {finding['rule_description']}")
+                logger.info(f"    Matched text: {finding['match']}\n")
+        else:
+            logger.info("No custom rule violations found.")
+
 
     # Determine if logging should be enabled
     use_logging = "-l" in sys.argv
