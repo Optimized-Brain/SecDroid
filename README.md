@@ -183,6 +183,20 @@ python3 SecDroid.py [options] <APK_FILE_OR_DIRECTORY>
 
 ---
 
+## Custom Rule Engine for SecDroid
+
+  New feature is added by incorporating a Custom Rule Engine that scans files against predefined security rules specified in a JSON file. The engine detects patterns in source code and configuration files, helping to identify potential security violations.
+
+  **Features:**
+  
+     1.  Load custom rules from a JSON file.
+     
+     2.  Scan individual files or entire directories recursively.
+     
+     3.  Detect matches using regular expressions with severity classification.
+     
+     4.  Supports rule-specific file type restrictions.
+
 ## Contributing
 
 Contributions are welcome! If you wish to report bugs, suggest enhancements, or submit pull requests, please follow these steps:
